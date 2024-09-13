@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('accions', function (Blueprint $table) {
-            $table->id('id_accion'); // Llave primaria
+            $table->bigIncrements('id'); // Clave primaria
             $table->boolean('guardar'); // Campo booleano 
             $table->boolean('actualizar'); // Campo booleano 
             $table->boolean('modificar'); // Campo booleano 

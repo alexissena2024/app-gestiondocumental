@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('colegios', function (Blueprint $table) {
-            $table->id('id_colegio');//llave primaria
+            $table->bigIncrements('id'); // Clave primaria
             $table->string('nombre_colegio');
             $table->timestamps();
         });

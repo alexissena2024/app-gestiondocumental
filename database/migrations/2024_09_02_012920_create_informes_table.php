@@ -12,9 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('informes', function (Blueprint $table) {
-            $table->id('id_informes'); // Llave principal
+            $table->bigIncrements('id'); // Clave primaria
             $table->string('nombre_informe'); 
-            $table->string('rango_fechas'); 
+            $table->date('fecha_inicial'); 
+            $table->date('fecha_final'); 
             $table->boolean('convertir_pdf_a_excel'); //campo boolenao
             $table->timestamps(); 
         });

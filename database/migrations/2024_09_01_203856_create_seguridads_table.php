@@ -11,12 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('seguridad', function (Blueprint $table) {
-            $table->id('seguridad_id'); // Llave primaria
-            $table->string('cedulaFK'); // Llave foránea
+        Schema::create('seguridads', function (Blueprint $table) {
+            $table->bigIncrements('id'); // Clave primaria
+         
             $table->string('contraseña'); // Contraseña
             $table->boolean('restablecer_contraseña'); // Campo booleano
-            $table->foreign('cedulaFK')->references('cedula')->on('usuarios')->onDelete('cascade');
+            $table->string('politicas expiracion'); //
+            $table->integer('bloqueo de intentos'); //
+
+            $table->unsignedBigInteger('cedulaFK');
+            $table->foreign('cedulaFK')->references('id')->on('usuarios');
             $table->timestamps(); 
         });
     }

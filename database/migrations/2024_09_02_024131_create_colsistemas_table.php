@@ -12,19 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('colsistemas', function (Blueprint $table) {
-            $table->id('idsistemas');
+            $table->bigIncrements('id'); // Clave primaria
             
             // Definir la columna para la llave foránea
                 $table->unsignedBigInteger('colegios_fk');
 
             // Establecer la relación de la llave foránea
-                 $table->foreign('colegios_fk')->references('id_colegio')->on('colegios')->onDelete('cascade');
+                 $table->foreign('colegios_fk')->references('id')->on('colegios')->onDelete('cascade');
 
 
 
              // Definir la columna para la llave foránea que referencia a 'salasistemas'
                 $table->unsignedBigInteger('salasistemas_fk'); 
-                $table->foreign('salasistemas_fk')->references('id_salasistemas')->on('salasistemas')->onDelete('cascade');
+                $table->foreign('salasistemas_fk')->references('id')->on('salasistemas')->onDelete('cascade');
 
                 $table->timestamps();
         });

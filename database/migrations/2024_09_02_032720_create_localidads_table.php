@@ -11,8 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('localidades', function (Blueprint $table) {
-            $table->id('id_localidad'); // Llave primaria
+        Schema::create('localidads', function (Blueprint $table) {
+            $table->bigIncrements('id'); // Clave primaria
             $table->string('nombre_localidad');
             $table->timestamps();
            

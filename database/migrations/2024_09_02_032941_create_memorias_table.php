@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('memorias', function (Blueprint $table) {
-            $table->id('id_memoria');//llave principal
+            $table->bigIncrements('id'); // Clave primaria
             $table->string('capacidadmemoria');
             $table->timestamps();
         });

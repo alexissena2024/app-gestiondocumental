@@ -39,14 +39,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 // Define una ruta API para USUARIOS
-Route::get('/Usuario/getdata', [UsuarioController::class, 'getData']);
-Route::post('/Usuario/save',     [UsuarioController::class, 'save']);
-Route::put('/Usuario/update',     [UsuarioController::class, 'actualizar']);
-Route::delete('/Usuario/delete',     [UsuarioController::class, 'delete']);
+Route::get('/usuario/getData', [UsuarioController::class, 'getData']);
+Route::post('/usuario/save',     [UsuarioController::class, 'save']);
+Route::put('/usuario/update',     [UsuarioController::class, 'actualizar']);
+Route::delete('/usuario/delete',     [UsuarioController::class, 'delete']);
 
 
 // Define una ruta API para SEGURIDAD
- Route::get('/Seguridad/getdata',[SeguridadController::class, 'getData']);
+ Route::get('/Seguridad/getData',[SeguridadController::class, 'getData']);
  Route::post('/Seguridad/save', [SeguridadController::class, 'save']);
  Route::put('/Seguridad/update', [SeguridadController::class, 'actualizar']);
  Route::delete('/Seguridad/delete',[SeguridadController::class, 'delete']);

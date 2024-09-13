@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ofimaticas', function (Blueprint $table) {
-            $table->id('id_ofimatica');//llave primaria
+            $table->bigIncrements('id'); // Clave primaria
             $table->string('nomofimatica');
             $table->timestamps();
         });

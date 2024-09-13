@@ -12,18 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('sedes', function (Blueprint $table) {
-            $table->id('id_sedes');//llave primaria
+            $table->bigIncrements('id'); // Clave primaria
             $table->string('nomsedes');
-
-            // Definir la columna para la llave foránea
-            $table->unsignedBigInteger('FK_colegio');
-            
-            // Establecer la relación de la llave foránea
-            $table->foreign('FK_colegio')->references('id_colegio')->on('colegios')->onDelete('cascade');
-
-
-
-
 
             $table->timestamps();
         });

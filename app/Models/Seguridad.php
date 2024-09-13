@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Seguridad extends Model
 {
     use HasFactory;
+    protected $fillable=['contraseña','restablecer_contraseña','politicas expiracion','bloqueo de intentos','cedulaFK'];
 }

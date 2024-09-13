@@ -4,19 +4,47 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Usuario; //IMPORTO EL MODELO*********
 
 class UsuarioController extends Controller
 {
      // Método para guardar en seguridad
      public function save(Request $request)
      {
+
+
+        //PRIMERA FORMA DE HACER LA PETICION**********
+         $usuario=Usuario::create([
+            "nombre"=>$request->nombre,
+            "apellido_materno"=>$request->apellido_materno,
+            "apellido_paterno"=>$request->apellido_paterno,
+            "cedula"=>$request->cedula
+            ]);   
+
+
+
+          //SEGUNDA FORMA DE HACER LA PETICION*******
+        
+        // $usuario=new Usuario();
+        // $usuario->nombre=$request ->name;
+        // $usuario->apellido_materno=$request ->apellido_materno;
+        // $usuario->apellido_paterno=$request ->apellido_paterno;
+        // $usuario->cedula=$request ->cedula;
+        // $usuario->save();
+
+
          return response()->json([
              'status' => '200',
              'message' => 'guardado con éxito USUARIO',
              'data' => $request->nombre,
          ]);
-     }
+    }
      
+
+        
+
+
+
      // Método para obtener datos
      public function getData(Request $request)
      {
@@ -28,7 +56,11 @@ class UsuarioController extends Controller
          ]);
      }
  
-     // Método para actualizar 
+
+
+
+
+     // Método para actualizar   PUT*****
      public function actualizar(Request $request)
      {
          return response()->json([
@@ -37,6 +69,9 @@ class UsuarioController extends Controller
          ]);
      }
          
+
+
+
      // Método para eliminar un usuario
      public function delete(Request $request)
      {

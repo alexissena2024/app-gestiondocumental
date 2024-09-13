@@ -12,22 +12,21 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('localcolegios', function (Blueprint $table) {
-            $table->id('id_localcolegio');
+            $table->bigIncrements('id'); // Clave primaria
              // Definición de columnas para llaves foráneas
              $table->unsignedBigInteger('fk_idcolegios');
-             $table->foreign('fk_idcolegios')->references('id_colegio')->on('colegios');
+             $table->foreign('fk_idcolegios')->references('id')->on('colegios');
            
 
-             $table->unsignedBigInteger('fk_localidad');
-             $table->foreign('fk_localidad')->references('id_localidad')->on('localidads');
-
+             $table->unsignedBigInteger('localidad_FK');
+             $table->foreign('localidad_FK')->references('id')->on('localidads');
+            
              $table->unsignedBigInteger('fk_nomsedes');
-             $table->foreign('fk_nomsedes')->references('tipo_sede')->on('sedes');
+             $table->foreign('fk_nomsedes')->references('id')->on('sedes');
 
 
              $table->unsignedBigInteger('fk_dependencias');
-             $table->foreign('fk_dependencias')->references('id_tipo_dependencia')->on('dependencias');
-
+             $table->foreign('fk_dependencias')->references('id')->on('dependencias');
 
 
             $table->timestamps();

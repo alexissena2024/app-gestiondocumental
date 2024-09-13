@@ -12,16 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('infcolegios', function (Blueprint $table) {
-            $table->id('id_infcolegios');//llave principal
+            $table->bigIncrements('id'); // Clave primaria
 
            // Llave foránea que referencia a la tabla 'informes'
               $table->unsignedBigInteger('informes_fk');
-             $table->foreign('informes_fk')->references('id_informes')->on('informes')->onDelete('cascade');
+             $table->foreign('informes_fk')->references('id')->on('informes')->onDelete('cascade');
 
 
              // Llave foránea que referencia a la tabla 'colegios'
                 $table->unsignedBigInteger('colegios_fk');
-                $table->foreign('colegios_fk')->references('id_colegio')->on('colegios')->onDelete('cascade');
+                $table->foreign('colegios_fk')->references('id')->on('colegios')->onDelete('cascade');
 
             $table->timestamps();
         });

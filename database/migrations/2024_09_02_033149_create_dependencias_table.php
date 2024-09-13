@@ -12,15 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('dependencias', function (Blueprint $table) {
-            $table->id('id_dependencia');//llave primaria
+            $table->bigIncrements('id'); // Clave primaria
             $table->string('nomdependencia');
             $table->string('piso');
-
-            // Definir la columna para la llave foránea
-            $table->unsignedBigInteger('fk_sedes');
-            
-            // Establecer la relación de la llave foránea
-            $table->foreign('fk_sedes')->references('id_sedes')->on('sedes')->onDelete('cascade');
 
             $table->timestamps();
         });

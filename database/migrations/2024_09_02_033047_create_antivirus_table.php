@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('antivirus', function (Blueprint $table) {
-            $table->id('id_antivirus');//llave principal
+            $table->bigIncrements('id'); // Clave primaria
             $table->string('nomantivirus');
             $table->timestamps();
         });
