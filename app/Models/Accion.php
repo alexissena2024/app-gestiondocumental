@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Accion extends Model
 {
     use HasFactory;
+    protected $fillable=['guardar','actualizar','modificar','eliminar'];
 }

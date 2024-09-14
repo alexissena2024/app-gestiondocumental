@@ -29,7 +29,7 @@ class SeguridadController extends Controller
         return response()->json([
              'status' => '200',
              'message' => 'guardado con éxito TABLA SEGURIDAD',
-             'data' => $request->nombre,
+            //  'data' => $request->$cedula,
          ]);
      }
      

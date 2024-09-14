@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Antiviru extends Model
 {
     use HasFactory;
+    protected $fillable=['nomantivirus'];
 }

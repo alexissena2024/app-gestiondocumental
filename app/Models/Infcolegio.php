@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Infcolegio extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'informes_fk',  
+        'colegios_fk', 
+    ];
 }

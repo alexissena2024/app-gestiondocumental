@@ -18,13 +18,13 @@ return new class extends Migration
                 $table->unsignedBigInteger('colegios_fk');
 
             // Establecer la relación de la llave foránea
-                 $table->foreign('colegios_fk')->references('id')->on('colegios')->onDelete('cascade');
+                 $table->foreign('colegios_fk')->references('id')->on('colegios');
 
 
 
              // Definir la columna para la llave foránea que referencia a 'salasistemas'
                 $table->unsignedBigInteger('salasistemas_fk'); 
-                $table->foreign('salasistemas_fk')->references('id')->on('salasistemas')->onDelete('cascade');
+                $table->foreign('salasistemas_fk')->references('id')->on('salasistemas');
 
                 $table->timestamps();
         });

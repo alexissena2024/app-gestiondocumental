@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Ofimatica extends Model
 {
     use HasFactory;
+    protected $fillable=['nomofimatica'];
 }

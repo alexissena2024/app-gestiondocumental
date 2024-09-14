@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Sistema extends Model
 {
     use HasFactory;
+    protected $fillable=['nom_salasistema'];
 }

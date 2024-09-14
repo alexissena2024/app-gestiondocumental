@@ -5,44 +5,31 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Colsistema; //IMPORTO EL MODELO*********
+
 class ColsistemaController extends Controller
 {
-     // Método para guardar en seguridad
+     // Método para guardar 
      public function save(Request $request)
      {
-         return response()->json([
+        
+        //PRIMERA FORMA DE HACER LA PETICION**********
+     
+            $colsistema = Colsistema::create([
+            "colegios_fk" => $request->colegios_fk,  // Asegurarse de que el nombre sea correcto
+            "salasistemas_fk" => $request->salasistemas_fk,  // Usar el nombre adecuado
+            
+            ]);   
+
+        
+        return response()->json([
              'status' => '200',
-             'message' => 'guardado con éxito TABLA COLSISTEMA',
-             'data' => $request->nombre,
+             'message' => 'guardado con éxito TABLA colsistema',
+              'data' => $colsistema
          ]);
      }
      
-     // Método para obtener datos
-     public function getData(Request $request)
-     {
-         $rta = 10 + 2;
-         return response()->json([
-             'status' => '200',
-             'message' => 'datos obtenidos con éxito TABLA COLSISTEMA',
-             'result' => $rta
-         ]);
-     }
- 
-     // Método para actualizar 
-     public function actualizar(Request $request)
-     {
-         return response()->json([
-             'status' => '200',
-             'message' => 'actualizado con éxito!!!TABLA COLSISTEMA!!'
-         ]);
-     }
-         
-     // Método para eliminar un usuario
-     public function delete(Request $request)
-     {
-         return response()->json([
-             'status' => '200',
-             'message' => 'eliminado con éxito TABLA COLSISTEMA'
-         ]);
-     }
+
+
+     
 }
