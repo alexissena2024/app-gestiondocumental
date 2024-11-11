@@ -33,8 +33,8 @@ return new class extends Migration
             $table->foreign('fk_memoria')->references('id')->on('memorias')->onDelete('cascade');
 
             // Definir la columna para la llave foránea id_disco
-            $table->unsignedBigInteger('fk_disco');
-            $table->foreign('fk_disco')->references('id')->on('discos')->onDelete('cascade');
+            $table->unsignedBigInteger('fk_disco'); 
+            $table->foreign('fk_disco')->references('id')->on('discoduros')->onDelete('cascade');
 
             // Definir la columna para la llave foránea fk_ofimatica
             $table->unsignedBigInteger('fk_ofimatica');

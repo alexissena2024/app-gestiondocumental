@@ -11,9 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('discos', function (Blueprint $table) {
-            $table->bigIncrements('id'); // Clave primaria
-            $table->string('capacidaddisco');
+        Schema::create('cargos', function (Blueprint $table) {
+            $table->id();
+            $table->string('cargos');
             $table->timestamps();
         });
     }
@@ -23,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('discos');
+        Schema::dropIfExists('cargos');
     }
 };
