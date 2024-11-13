@@ -21,8 +21,8 @@ use App\Http\Controllers\OfimaticaController;
 use App\Http\Controllers\AntiviruController;
 use App\Http\Controllers\LocalcolegioController;
 use App\Http\Controllers\ElementoController;
-
-
+use App\Http\Controllers\CargoController;
+use App\Http\Controllers\AreaController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -172,3 +172,16 @@ Route::delete('/usuario/delete',     [UsuarioController::class, 'delete']);
                Route::post('/Tipoelemento/save', [ElementoController::class, 'save']);
                Route::put('/Tipoelemento/update', [ElementoController::class, 'actualizar']);
                Route::delete('/Tipoelemento/delete',[ElementoController::class, 'delete']);
+
+
+               // Define una ruta API paraTIPO DE CARGOS
+                Route::get('/Cargo/getData',[CargoController::class, 'getData']);
+                Route::post('/Cargo/save', [CargoController::class, 'save']);
+                Route::put('/Cargo/update', [CargoController::class, 'actualizar']);
+                Route::delete('/Cargo/delete',[CargoController::class, 'delete']);
+
+                // Define una ruta API paraTIPO DE AREAS
+                Route::get('/Area/getData',[AreaController::class, 'getData']);
+                Route::post('/Area/save', [AreaController::class, 'save']);
+                Route::put('/Area/update', [AreaController::class, 'actualizar']);
+                Route::delete('/Area/delete',[AreaController::class, 'delete']);
