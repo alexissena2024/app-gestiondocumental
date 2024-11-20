@@ -11,9 +11,9 @@ class AreaController extends Controller
     public function save(Request $request)
     {
         $request->validate([
-            'nombre' => 'required|string|max:255', // Asegurarse de que el campo 'nombre' sea texto y no vacío
-            'salario' => 'required|numeric|min:0', // Asegurarse de que 'salario' sea un número
-            'area' => 'required|string|max:255', // Asegurarse de que 'area' sea texto
+            'nombre' => 'required', 
+            'salario' => 'required', 
+            'area' => null, 
         ]);
 
         // Crear el nuevo registro en la base de datos
@@ -33,12 +33,12 @@ class AreaController extends Controller
     // Método para obtener todos los datos
     public function getData()
     {
-        $areas = Area::all();
+        $area = Area::all();
 
         return response()->json([
             'status' => 200,
             'message' => 'Datos obtenidos con éxito de AREAS',
-            'data' => $areas
+            'data' => $area
         ]);
     }
 
@@ -46,9 +46,9 @@ class AreaController extends Controller
     public function actualizar(Request $request, $id)
     {
         $request->validate([
-            'nombre' => 'required|string|max:255', // Asegurarse de que 'nombre' sea texto
-            'salario' => 'nullable|numeric|min:0', // Asegurarse de que 'salario' sea un número, puede ser nulo
-            'area' => 'nullable|string|max:255', // Asegurarse de que 'area' sea texto, puede ser nulo
+            'nombre' => 'required', // Asegurarse de que 'nombre' sea texto
+            'salario' => 'required', // Asegurarse de que 'salario' sea un número, puede ser nulo
+            'area' => 'required', // Asegurarse de que 'area' sea texto, puede ser nulo
         ]);
 
         $area = Area::find($id);

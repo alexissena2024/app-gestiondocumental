@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('cargos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-            $table->string('salario');
-            $table->string('area');
+            $table->decimal('salario'); 
+            $table->string('area')->nullable()->default(0); // Permitir nulos y valor por defecto 0
             $table->timestamps();
         });
     }

@@ -2,82 +2,103 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Usuario; //IMPORTO EL MODELO*********
+use App\Models\Usuario; // Importa correctamente el modelo usuario
 
 class UsuarioController extends Controller
 {
-     // Método para guardar en seguridad
-     public function save(Request $request)
-     {
+    // Método para guardar un nuevo cargo
+    public function save(Request $request)
+    {
+        $request->validate([
+            'nombre' => 'required',
+            'apellidoMat' => 'required',
+            'apellidoPat' => 'required',
+            'cedula' => 'required',
+        ]);
 
+        $usuario = Usuario::create([
+            'nombre' => $request->nombre,
+            'apellido_materno' => $request->apellidoMat,
+            'apellido_paterno' => $request->apellidoPat,
+            'cedula' => $request->cedula,
+        ]);
 
-        //PRIMERA FORMA DE HACER LA PETICION**********
-         $usuario=Usuario::create([
-            "nombre"=>$request->nombre,
-            "apellido_materno"=>$request->apellido_materno,
-            "apellido_paterno"=>$request->apellido_paterno,
-            "cedula"=>$request->cedula
-            ]);   
-
-
-
-          //SEGUNDA FORMA DE HACER LA PETICION*******
-        
-        // $usuario=new Usuario();
-        // $usuario->nombre=$request ->name;
-        // $usuario->apellido_materno=$request ->apellido_materno;
-        // $usuario->apellido_paterno=$request ->apellido_paterno;
-        // $usuario->cedula=$request ->cedula;
-        // $usuario->save();
-
-
-         return response()->json([
-             'status' => '200',
-             'message' => 'guardado con éxito USUARIO',
-             'data' => $request->nombre,
-         ]);
+        return response()->json([
+            'status' => '200',
+            'message' => 'Guardado con éxito en usuarios',
+            'data' => $usuario
+        ]);
     }
+
+    // Método para obtener todos los usuarios
+    public function getData()
+    {
+        $usuarios = Usuario::all();
+
+        return response()->json([
+            'status' => '200',
+            'message' => 'Datos obtenidos con éxito de Usuarios',
+            'data' => $usuarios
+        ]);
+    }
+
+    // Método para obtener un usuario por su ID
      
+    public function getDataById(Request $request)
+    {
+        // $cargo = Cargo::findOrFail($id);
+        $usuario = Usuario::where('id',$request->id)->get();//traiga los que correspondan por el ID metodo GET con una clausa WHERE
+    
+        return response()->json([
+            'status' => '200',
+            'message' => 'Datos obtenidos con éxito de Usuario',
+            'data' => $usuario
+        ]);
+    }
 
-        
 
-
-
-     // Método para obtener datos
-     public function getData(Request $request)
-     {
-         $rta = 10 + 2;
-         return response()->json([
-             'status' => '200',
-             'message' => 'datos obtenidos con éxito USUARIO',
-             'result' => $rta
-         ]);
-     }
+     
  
-
-
-
-
-     // Método para actualizar   PUT*****
+    // Método para actualizar un usuario
      public function actualizar(Request $request)
-     {
-         return response()->json([
-             'status' => '200',
-             'message' => 'actualizado con éxito!!!USUARIO!!'
-         ]);
+    {
+        $request->validate([
+            'nombre' => 'required',
+            'ApellidoMat' => 'required',
+            'ApellidoPat' => 'required',
+            'cedula' => 'required',
+            'id' => 'required',
+            
+        ]);
+
+        $usuario = Usuario::findOrFail($request->id);
+      //aqui se actualizan losa datos del USUARIO
+        $usuario->update([
+             'nombre' => $request->nombre,
+            'ApellidoMat' => $request->ApellidoMat,
+            'ApellidoPat' => $request->ApellidoPat,
+            'cedula' => $request->cedula,
+            'id' => $request->id,
+       ]);
+
+        return response()->json([
+            'status' => '200',
+            'message' => 'Actualizado con éxito USUARIOS!',
+         'data' => $usuario
+       ]);
      }
-         
+
+    // Método para eliminar un cargo por su ID
+    public function delete($id)
+    {
+        $usuario = Usuario::findOrFail($id);
+        $usuario->delete();
 
 
-
-     // Método para eliminar un usuario
-     public function delete(Request $request)
-     {
-         return response()->json([
-             'status' => '200',
-             'message' => 'eliminado con éxito USUARIO'
-         ]);
-     }
+        return response()->json([
+            'status' => '200',
+            'message' => 'Eliminado con éxito Usuario'
+        ]);
+    }
 }
