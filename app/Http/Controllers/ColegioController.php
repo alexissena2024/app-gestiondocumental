@@ -8,74 +8,120 @@ use App\Models\Colegio; //IMPORTO EL MODELO*********
 
 class ColegioController extends Controller
 {
-     // Método para guardar en seguridad
-    public function save(Request $request)
-    {
-
-
-       //PRIMERA FORMA DE HACER LA PETICION**********
-        $usuario=Colegio::create([
-           "nombre_colegio"=>$request->nombrecolegio,
-          
-           ]);   
-
-
-
-         //SEGUNDA FORMA DE HACER LA PETICION*******
-       
-       // $usuario=new Usuario();
-       // $usuario->nombre=$request ->name;
-       // $usuario->apellido_materno=$request ->apellido_materno;
-       // $usuario->apellido_paterno=$request ->apellido_paterno;
-       // $usuario->cedula=$request ->cedula;
-       // $usuario->save();
-
-
-        return response()->json([
-            'status' => '200',
-            'message' => 'guardado con éxito colegio',
-            'data' => $request->nombre,
-        ]);
-   }
-    
-
-       
-
-
-
-    // Método para obtener datos
-    public function getData(Request $request)
-    {
-        $rta = 10 + 2;
-        return response()->json([
-            'status' => '200',
-            'message' => 'datos obtenidos con éxito colegio',
-            'result' => $rta
-        ]);
-    }
-
-
-
-
-
-    // Método para actualizar   PUT*****
-    public function actualizar(Request $request)
-    {
-        return response()->json([
-            'status' => '200',
-            'message' => 'actualizado con éxito!!!colegio!!'
-        ]);
-    }
+     // Método para guardar un nuevo cargo
+     public function save(Request $request)
+     {
+         $request->validate([
+             'nombre_colegio' => 'required', //este campo debe ser igual al de la BD en este caso COLEGIO
+             
+         ]);
+ 
+ 
+      $colegio = Colegio::create([
+             'nombre_colegio' => $request->nombre_colegio, //este campo debe ser igual al de la BD en este caso COLEGIO Y se va emplear desde postman con el mismo nombre
+             
+         ]);
+ 
+         return response()->json([
+             'status' => '200',
+             'message' => 'Guardado con éxito en colegio',
+             'data' => $colegio
+         ]);
+     }
+ 
+     // Método para obtener todos los usuarios
+     public function getData()
+     {
+         $colegio = Colegio::all();
+ 
+         return response()->json([
+             'status' => '200',
+             'message' => 'Datos obtenidos con éxito de COLEGIO',
+             'data' => $colegio
+         ]);
+     }
+ 
+ 
+     // Método para obtener un COLEGIO por su ID
+      
+      
+     public function getDataById(Request $request)
+     {
+         // Realizar la consulta
+         $colegio = Colegio::where('id', $request->id)->get(); // Trae el colegio correspondiente al ID
         
+         // Verificar si la colección no está vacía
+         if ($colegio->isNotEmpty()) {
+             return response()->json([
+                 'status' => '200',
+                 'message' => 'Datos obtenidos con éxito de colegio',
+                 'data' => $colegio
+             ]);
+         } else {
+             // En caso de que no se encuentre el registro
+             return response()->json([
+                 'status' => '404',
+                 'message' => 'No se encontró el colegio con el ID proporcionado',
+                 'data' => []
+             ]);
+         }
+     }
+     
+ 
+      
+  
+   // Método para actualizar un COLEGIO
+   public function actualizar(Request $request)
+   {
+ 
+     //estoss campo debe ser igual al de la BD en este caso COLEGIO 
+       $request->validate([
+           'id' => 'required', 
+           'nombre_colegio' => 'required',
+        
+       ]);
+ 
+         $colegio = Colegio::findOrFail($request->id);
+       //aqui se actualizan losa datos del colegio
+       $colegio->update([
+         'nombre_colegio' => $request->nombre_colegio, // el campo despues de la ->se debe utilizar en postman 
+         
+     ]);
+ 
+     return response()->json([
+         'status' => '200',
+         'message' => 'Actualizado con éxito COLEGIO!',
+         'data' => $colegio
+     ]);
+ }
+ 
+
+       // Método para eliminar un colegio por su ID
+       public function delete(Request $request)
+
+       {
+
+       
+        $colegio = Colegio::findOrFail($request->id);
+         
+           if($colegio){
+
+            $colegio->delete();
 
 
+            return response()->json([
+                'status' => '200',
+                'message' => 'Se elimino el registro para colegio'
+                
+            ]);
+           }else{
 
-    // Método para eliminar un usuario
-    public function delete(Request $request)
-    {
-        return response()->json([
-            'status' => '200',
-            'message' => 'eliminado con éxito colegio'
-        ]);
-    }
-}
+            return response()->json([
+                'status' => '201',
+                'message' => 'ID NO ENCONTRADO'
+            ]);
+           }  
+       }
+   }
+   
+ 

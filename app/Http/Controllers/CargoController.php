@@ -81,20 +81,12 @@ class CargoController extends Controller
 
    
       
-    
-
-
-
-
-
-
-
-
     // Método para eliminar un cargo por su ID
-    public function delete($id)
+    public function delete(Request $request)
+ 
     {
-        $cargo = Cargo::findOrFail($id);
-        $cargo->delete();
+        $cargo = Cargo::findOrFail($request->id);
+         $cargo->delete();
 
 
         return response()->json([

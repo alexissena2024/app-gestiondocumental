@@ -35,7 +35,8 @@ Route::get('/usuario/getData', [UsuarioController::class, 'getData']);
 Route::get('usuario/datosById', [UsuarioController::class, 'getDataById']);
 Route::post('/usuario/save', [UsuarioController::class, 'save']);
 Route::put('/usuario/update', [UsuarioController::class, 'actualizar']);
-Route::delete('/usuario/delete/{id}', [UsuarioController::class, 'delete']);
+Route::delete('/usuario/delete/{id}', [UsuarioController::class,'delete']);
+
 
 
 // Define una ruta API para SEGURIDAD
@@ -56,11 +57,7 @@ Route::post('/Accion/save', [AccionController::class, 'save']);
 Route::put('/Accion/update/{id}', [AccionController::class, 'actualizar']);
 Route::delete('/Accion/delete/{id}', [AccionController::class, 'delete']);
 
-// Define una ruta API para COLEGIO
-Route::get('/Colegio/getData', [ColegioController::class, 'getData']);
-Route::post('/Colegio/save', [ColegioController::class, 'save']);
-Route::put('/Colegio/update/{id}', [ColegioController::class, 'actualizar']);
-Route::delete('/Colegio/delete/{id}', [ColegioController::class, 'delete']);
+
 
 // Define una ruta API para SISTEMA
 Route::get('/Sistema/getData', [SistemaController::class, 'getData']);
@@ -152,6 +149,16 @@ Route::get('Cargo/datosById', [CargoController::class, 'getDataById']);
 Route::post('/Cargo/save', [CargoController::class, 'save']);
 Route::put('/Cargo/update', [CargoController::class, 'actualizar']);
 Route::delete('/Cargo/delete/{id}', [CargoController::class, 'delete']);
+
+
+
+// Define una ruta API para COLEGIO
+Route::get('/Colegio/getData',[ColegioController::class,'getData']);
+Route::get('Colegio/datosById',[ColegioController::class,'getDataById']);
+Route::post('/Colegio/save',[ColegioController::class,'save']);
+Route::put('/Colegio/update/',[ColegioController::class,'actualizar']);
+Route::delete('/Colegio/delete/{id}',[ColegioController::class,'delete']);
+
 
 // Define una ruta API para TIPO DE AREAS
 Route::get('/Area/getData', [AreaController::class, 'getData']);

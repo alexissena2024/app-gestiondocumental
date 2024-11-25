@@ -88,16 +88,16 @@ class UsuarioController extends Controller
     ]);
 }
 
-    // Método para eliminar un cargo por su ID
-    public function delete($id)
+    // Método para eliminar un usuario por su ID
+    public function delete(Request $request)
     {
-        $usuario = Usuario::findOrFail($id);
-        $usuario->delete();
+        $usuario = Usuario::findOrFail($request->id);
+         $usuario->delete();
 
 
         return response()->json([
             'status' => '200',
-            'message' => 'Eliminado con éxito Usuario'
+            'message' => 'Eliminado con éxito USUARIO'
         ]);
     }
 }
