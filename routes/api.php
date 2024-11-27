@@ -7,7 +7,6 @@ use App\Http\Controllers\SeguridadController;
 use App\Http\Controllers\informeController;
 use App\Http\Controllers\AccionController;
 use App\Http\Controllers\ColegioController;
-use App\Http\Controllers\SistemaController;
 use App\Http\Controllers\infcolegioController;
 use App\Http\Controllers\ColsistemaController;
 use App\Http\Controllers\LocalidadController;
@@ -23,20 +22,13 @@ use App\Http\Controllers\LocalcolegioController;
 use App\Http\Controllers\ElementoController;
 use App\Http\Controllers\CargoController;
 use App\Http\Controllers\AreaController;
+use App\Http\Controllers\SalasistemaController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 // Define rutas API para los controladores con las correcciones de parámetros y métodos
-
-// Define una ruta API para USUARIOS
-Route::get('/usuario/getData', [UsuarioController::class, 'getData']);
-Route::get('usuario/datosById', [UsuarioController::class, 'getDataById']);
-Route::post('/usuario/save', [UsuarioController::class, 'save']);
-Route::put('/usuario/update', [UsuarioController::class, 'actualizar']);
-Route::delete('/usuario/delete/{id}', [UsuarioController::class,'delete']);
-
 
 
 // Define una ruta API para SEGURIDAD
@@ -59,11 +51,6 @@ Route::delete('/Accion/delete/{id}', [AccionController::class, 'delete']);
 
 
 
-// Define una ruta API para SISTEMA
-Route::get('/Sistema/getData', [SistemaController::class, 'getData']);
-Route::post('/Sistema/save', [SistemaController::class, 'save']);
-Route::put('/Sistema/update/{id}', [SistemaController::class, 'actualizar']);
-Route::delete('/Sistema/delete/{id}', [SistemaController::class, 'delete']);
 
 // Define una ruta API para infcolegio
 Route::get('/infcolegio/getData', [infcolegioController::class, 'getData']);
@@ -89,11 +76,7 @@ Route::post('/Sede/save', [SedeController::class, 'save']);
 Route::put('/Sede/update/{id}', [SedeController::class, 'actualizar']);
 Route::delete('/Sede/delete/{id}', [SedeController::class, 'delete']);
 
-// Define una ruta API para DEPENDENCIA
-Route::get('/Dependencia/getData', [DependenciaController::class, 'getData']);
-Route::post('/Dependencia/save', [DependenciaController::class, 'save']);
-Route::put('/Dependencia/update/{id}', [DependenciaController::class, 'actualizar']);
-Route::delete('/Dependencia/delete/{id}', [DependenciaController::class, 'delete']);
+
 
 // Define una ruta API para MARCAS
 Route::get('/Marca/getData', [MarcaController::class, 'getData']);
@@ -143,6 +126,15 @@ Route::post('/Tipoelemento/save', [ElementoController::class, 'save']);
 Route::put('/Tipoelemento/update/{id}', [ElementoController::class, 'actualizar']);
 Route::delete('/Tipoelemento/delete/{id}', [ElementoController::class, 'delete']);
 
+
+
+// Define una ruta API para USUARIOS
+Route::get('/usuario/getData', [UsuarioController::class, 'getData']);
+Route::get('usuario/datosById', [UsuarioController::class, 'getDataById']);
+Route::post('/usuario/save', [UsuarioController::class, 'save']);
+Route::put('/usuario/update', [UsuarioController::class, 'actualizar']);
+Route::delete('/usuario/delete/{id}', [UsuarioController::class,'delete']);
+
 // Define una ruta API para TIPO DE CARGOS
 Route::get('/Cargo/getData', [CargoController::class, 'getData']);
 Route::get('Cargo/datosById', [CargoController::class, 'getDataById']);
@@ -159,6 +151,21 @@ Route::post('/Colegio/save',[ColegioController::class,'save']);
 Route::put('/Colegio/update/',[ColegioController::class,'actualizar']);
 Route::delete('/Colegio/delete/{id}',[ColegioController::class,'delete']);
 
+
+// Define una ruta API para DEPENDENCIA
+Route::get('/Dependencia/getData', [DependenciaController::class, 'getData']);
+Route::get('Dependencia/datosById',[DependenciaController::class,'getDataById']);
+Route::post('/Dependencia/save', [DependenciaController::class, 'save']);
+Route::put('/Dependencia/update/', [DependenciaController::class, 'actualizar']);
+Route::delete('/Dependencia/delete/{id}', [DependenciaController::class, 'delete']);
+
+
+// Define una ruta API para SISTEMA
+Route::get('/Salasistema/getData', [SalasistemaController::class, 'getData']);
+Route::get('Salasistema/datosById',[SalasistemaController::class,'getDataById']);
+Route::post('/Salasistema/save', [SalasistemaController::class, 'save']);
+Route::put('/Salasistema/update/', [SalasistemaController::class, 'actualizar']);
+Route::delete('/Salasistema/delete/{id}', [SalasistemaController::class, 'delete']);
 
 // Define una ruta API para TIPO DE AREAS
 Route::get('/Area/getData', [AreaController::class, 'getData']);

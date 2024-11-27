@@ -2,73 +2,98 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Dependencia; 
+use App\Models\Dependencia; // Importa correctamente el modelo dependencia
 
 class DependenciaController extends Controller
 {
-      // Método para guardar en seguridad
+    // Método para guardar una nueva dependencia
     public function save(Request $request)
     {
+        $request->validate([
+            'nomdependencia' => 'required', //este campo debe ser igual al de la BD en este caso dependencias
+            'piso' => 'required', //este campo debe ser igual al de la BD en este caso dependencias
+            
+        ]);
 
 
-       //PRIMERA FORMA DE HACER LA PETICION**********
-        $dependencias=Dependencia::create([
-           "nomdependencia"=>$request->nomdependencia,
-           "piso"=>$request->piso,
+     $dependencia = Dependencia::create([
+            'nomdependencia' => $request->nomdependencia, //este campo debe ser igual al de la BD en este caso dependencias Y se va emplear desde postman con el mismo nombre
+            'piso' => $request->piso, //este campo debe ser igual al de la BD en este caso dependencias Y se va emplear desde postman con el mismo nombre
            
-           ]);   
-
-
-
-
+        ]);
 
         return response()->json([
             'status' => '200',
-            'message' => 'guardado con éxito dependencia',
-            'data' =>   $dependencias
+            'message' => 'Guardado con éxito en dependencia',
+            'data' => $dependencia
         ]);
-   }
-    
+    }
 
-       
-
-
-
-    // Método para obtener datos
-    public function getData(Request $request)
+    // Método para obtener todos las dependencias
+    public function getData()
     {
+        $dependencia = Dependencia::all();
+
+        return response()->json([
+            'status' => '200',
+            'message' => 'Datos obtenidos con éxito de dependencias',
+            'data' => $dependencia
+        ]);
+    }
+
+
+    // Método para obtener una dependencia por su ID
      
-        return response()->json([
-            'status' => '200',
-            'message' => 'datos obtenidos con éxito dependencia',
-           
-        ]);
-    }
-
-
-
-
-
-    // Método para actualizar   PUT*****
-    public function actualizar(Request $request)
+    public function getDataById(Request $request)
     {
+        $dependencia = Dependencia::where('id', $request->id)->get(); // Trae la dependencia  correspondiente al ID
+
         return response()->json([
             'status' => '200',
-            'message' => 'actualizado con éxito!!!dependencia!!'
+            'message' => 'Datos obtenidos con éxito de dependencia',
+            'data' => $dependencia
         ]);
     }
+
+     
+ 
+  // Método para actualizar una dependencia
+  public function actualizar(Request $request)
+  {
+
+    //estoss campo debe ser igual al de la BD en este caso dependencias 
+      $request->validate([
+          'id' => 'required', 
+          'nomdependencia' => 'required',
+          'piso' => 'required',
+      ]);
+
+        $dependencia = Dependencia::findOrFail($request->id);
+      //aqui se actualizan losa datos de la dependencia
+      $dependencia->update([
+        'nomdependencia' => $request->nomdependencia, // el campo despues de la ->se debe utilizar en postman 
+        'piso' => $request->piso, // el campo despues de la ->se debe utilizar en postman
         
+    ]);
 
+    return response()->json([
+        'status' => '200',
+        'message' => 'Actualizado con éxito Dependencia!',
+        'data' => $dependencia
+    ]);
+}
 
-
-    // Método para eliminar un usuario
+    // Método para eliminar una dependencia por su ID
     public function delete(Request $request)
     {
+        $dependencia = Dependencia::findOrFail($request->id);
+         $dependencia->delete();
+
+
         return response()->json([
             'status' => '200',
-            'message' => 'eliminado con éxito dependencia'
+            'message' => 'Eliminado con éxito DEPENDENCIA'
         ]);
     }
 }

@@ -11,6 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
+        //lo que esta despues de la palabra create en este caso usuarios debe ser igual a como esta en las MIGRACIONES****/*
         Schema::create('usuarios', function (Blueprint $table) {
             
             $table->bigIncrements('id'); // Clave primaria
